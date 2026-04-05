@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Sriyans Kanneganti">
 
-<title>Untitled</title>
+<title>Project 1 Report Draft</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,18 +59,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="Step1_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Step1_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="Step1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="Step1_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="Step1_files/libs/quarto-html/popper.min.js"></script>
-<script src="Step1_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="Step1_files/libs/quarto-html/anchor.min.js"></script>
-<link href="Step1_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Step1_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="Step1_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="Step1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Step1_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="report-draft_files/libs/clipboard/clipboard.min.js"></script>
+<script src="report-draft_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="report-draft_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="report-draft_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="report-draft_files/libs/quarto-html/popper.min.js"></script>
+<script src="report-draft_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="report-draft_files/libs/quarto-html/anchor.min.js"></script>
+<link href="report-draft_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="report-draft_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="report-draft_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="report-draft_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="report-draft_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -82,13 +83,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Untitled</h1>
+<h1 class="title">Project 1 Report Draft</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sriyans Kanneganti </p>
+          </div>
+  </div>
     
   
     
@@ -99,26 +106,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="context-of-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="context-of-the-dataset">Context of the dataset</h2>
+<p>The data is an audit of plastic pollution done by Break Free From Plastic’s Brand Audit on the city of St.&nbsp;Johns in Newfoundland, Canada. The variables recorded include locations of cleanups and the amount of trash collected for various types of trash.</p>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning">Cleaning</h2>
+<p>This snippet has been provided as a cleaning script by the people who published the dataset.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>files_2020 <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"2020 BFFP National Data Results"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_subset</span>(<span class="st">"csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>files_2019 <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"2019 Brand Audit Appendix _ Results by Country/Countries"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_subset</span>(<span class="st">"csv"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>data_2020 <span class="ot">&lt;-</span> files_2020 <span class="sc">%&gt;%</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(read_csv, <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Country =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Parent_company =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Empty =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">HDPE =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">LDPE =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">O =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">PET =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">PP =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">PS =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">PVC =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Grand_Total =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_events =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">volunteers =</span> <span class="fu">col_double</span>()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2020</span>, <span class="at">.after =</span> Country) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Grand_Total =</span> <span class="fu">parse_number</span>(Grand_Total)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>data_2019 <span class="ot">&lt;-</span> files_2019 <span class="sc">%&gt;%</span> </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(<span class="fu">str_replace</span>(., <span class="st">".*[/]([^.]+)[.].*"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(read_csv, <span class="at">.id =</span> <span class="st">"country"</span>, <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">Country =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">Parent_company =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">Empty =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">HDPE =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">LDPE =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">O =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">PET =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">PP =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">PS =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">PVC =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">Grand_Total =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_events =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">volunteers =</span> <span class="fu">col_double</span>()</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2019</span>, <span class="at">.after =</span> country) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()  <span class="sc">%&gt;%</span> </span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pp =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(pp_2), pp, pp_2 <span class="sc">+</span> pp),</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>         <span class="at">ps =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(ps_2), ps, ps <span class="sc">+</span> ps_2)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">parent_company =</span> parent_co_final, <span class="at">num_events =</span> number_of_events, <span class="at">volunteers=</span> number_of_volunteers) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>ps_2, <span class="sc">-</span>pp_2)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>combo_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(data_2019, data_2020) </span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>combo_data <span class="sc">%&gt;%</span> </span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(<span class="st">"2021/2021-01-26/plastics.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>This cleaning grabs CSV files in two directories, and converts specific columns to be numeric. Adds a grand total and year column, as well as using the <code>clean_names</code> function to enforce naming conventions on variables.</p>
+<p>Finally, it merges the datasets and exports the combined data into a csv file.</p>
+</section>
+<section id="research-questions-with-current-data" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions-with-current-data">Research questions with current data</h2>
+<ul>
+<li>Are there more cleanup events in certain-areas than others?</li>
+<li>How does plastic polllution vary across companies?</li>
+</ul>
+</section>
+<section id="research-questions-with-supplemental-data" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions-with-supplemental-data">Research questions with supplemental data</h2>
+<ul>
+<li>How does volunteer participation vary across the time of day during a pickup event?</li>
+<li>Do companies with climate action programs pollute less?</li>
+</ul>
+</section>
+<section id="visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="first.png" class="img-fluid figure-img"></p>
+<figcaption>Are there more cleanup events in certain-areas than others?</figcaption>
+</figure>
 </div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="second.png" class="img-fluid figure-img"></p>
+<figcaption>How does plastic polllution vary across companies?</figcaption>
+</figure>
 </div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
 </section>
 
 </main>
