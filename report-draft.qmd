@@ -3,6 +3,7 @@ title: "Project 1 Report Draft"
 format: html
 author: Sriyans Kanneganti
 eval: False
+embed-resources: true
 ---
 
 ## Context of the dataset
