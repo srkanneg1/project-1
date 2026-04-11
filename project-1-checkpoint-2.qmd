@@ -1,0 +1,168 @@
+---
+title: "Project 1: Step 2"
+author: Sriyans Kanneganti
+format: html
+editor: visual
+theme: superhero
+error: true
+embed-resources: true
+---
+
+# Data Context/Cleaning
+
+**Context of Data:**
+
+The dataset I will be utilizing captures the global audit results from plastic waste that is collected from volunteers. The waste was then used to link pollution back to specific companies and the materials found to better learn how to combat the pollution
+
+**Data Cleaning:**
+
+The Janitor function was used to clean the column names and standardize them, mutate was used to convert strings into numeric and add a year column. Country names were extracted and stored in a new column for the 2019 data set. In the 2019 data set duplicate columns were removed also inconsistent column names were renamed. Finally the data sets were combined into one singular data set
+
+# **Dataset and Libraries**
+
+```{r}
+#| echo: true
+#| output: false
+tuesdata <- tidytuesdayR::tt_load('2021-01-26')
+tuesdata <- tidytuesdayR::tt_load(2021, week = 5)
+plastics <- tuesdata$plastics
+```
+
+```{r}
+#| echo: true
+#| output: false
+library(tidyverse)
+library(dplyr)
+```
+
+# 1. Dominant Plastic Type by Country
+
+```{r}
+find_max <- function(x) {
+  names(x)[x == max(x, na.rm = TRUE)][1] 
+}
+
+dominant_plastic <- function(data) {
+  plastic_cols <- 
+    c(
+    "empty", 
+    "hdpe", 
+    "ldpe", 
+    "o", 
+    "pet", 
+    "pp", 
+    "ps", 
+    "pvc")
+  dominant <- apply(
+    select(data, all_of(plastic_cols)), 
+    1,
+    FUN = find_max
+  )
+  return(dominant)
+}
+
+```
+
+# Example Call
+
+```{r}
+head(dominant_plastic(plastics), 24)
+```
+
+# 2. Cleanup Efficiency by Country
+
+```{r}
+initial <- plastics |> 
+  group_by(
+    country
+    ) |> 
+  summarise(
+    Efficiency = sum(
+      grand_total
+      ) / sum(
+        num_events
+        )
+    )
+third <- quantile(
+  initial$Efficiency, 
+  probs = 0.75, 
+  na.rm = TRUE
+  )
+first <- quantile(
+  initial$Efficiency, 
+  probs = 0.25,
+  na.rm = TRUE
+  )
+mult <- 1.5 * IQR(
+  initial$Efficiency, 
+  na.rm = TRUE
+  )
+
+initial |>
+  filter(
+    (Efficiency < third + mult) & (Efficiency > first - mult)
+    ) |>
+  arrange(
+    -Efficiency
+  )
+```
+
+# 3. Plastic Type Summary by Year
+
+```{r}
+plastic_summary_by_year <- function(data, year_value) { 
+data |> 
+filter(year == year_value) |> 
+summarise( pet = sum(pet, na.rm = TRUE), 
+hdpe = sum(hdpe, na.rm = TRUE), 
+ldpe = sum(ldpe, na.rm = TRUE), 
+pp = sum(pp, na.rm = TRUE), 
+ps = sum(ps, na.rm = TRUE), 
+pvc = sum(pvc, na.rm = TRUE), 
+other = sum(o, na.rm = TRUE) ) |> 
+mutate( total = pet + hdpe + ldpe + pp + ps + pvc + other ) |>
+mutate( 
+pet = pet / total, 
+hdpe = hdpe / total, 
+ldpe = ldpe / total, 
+pp = pp / total, 
+ps = ps / total, 
+pvc = pvc / total, 
+other = other / total, 
+year = year_value 
+) 
+}
+```
+
+# Example Call
+
+```{r}
+plastic_summary_by_year(plastics, 2019) |> 
+bind_rows(plastic_summary_by_year(plastics, 2020)) |> 
+select(
+year, 
+pet, 
+hdpe, 
+ldpe, 
+pp, 
+ps, 
+pvc, 
+other
+)
+```
+
+# 4. Average amount of volunteers per country
+
+```{r}
+volunteer_per_country <- function(x){
+  x |> 
+    group_by(country)|>
+    summarise(avg_volunteers = mean(volunteers, na.rm = TRUE))
+  }
+```
+
+# Example Call
+
+```{r}
+volunteer_per_country(plastics)
+```
