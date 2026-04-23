@@ -128,7 +128,7 @@ We are choosing to utilize API-Ninjas API to gather country GDP and determine wh
 
 ```{r}
 #| output: false
-my_key = "k6XuPbvIYFC3YPIaD875hrv3Tr4WfWhFXUsyhuFQ"
+my_key = "INSERT API KEY HERE"
 get_GDP <- function (country, key = my_key) {
   
   url <- glue(
