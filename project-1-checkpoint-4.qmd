@@ -140,7 +140,7 @@ my_key <- "INSERT KEY HERE"
 get_GDP <- function (country, key = my_key) {
   
   url <- glue(
-    "https://api.api-ninjas.com/v1/gdp?country={country}&year=;X-Api-Key=MYbhe1Rp8V9ntWPVp9Qr8D2391Kqzu3KFmecPRNK"
+    "https://api.api-ninjas.com/v1/gdp?country={country}&year=;X-Api-Key={key}"
     )
   my_data <- safely(fromJSON)(url)
   if (is.null(my_data$result)) {
@@ -394,11 +394,11 @@ We are choosing to utilize API-Ninjas API to gather country GDP and determine wh
 
 ```{r}
 #| output: false
-my_key = "k6XuPbvIYFC3YPIaD875hrv3Tr4WfWhFXUsyhuFQ"
+my_key = "INSERT KEY HERE"
 get_GDP <- function (country, key = my_key) {
   
   url <- glue(
-    "https://api.api-ninjas.com/v1/gdp?country={country}&year=;X-Api-Key=MYbhe1Rp8V9ntWPVp9Qr8D2391Kqzu3KFmecPRNK"
+    "https://api.api-ninjas.com/v1/gdp?country={country}&year=;X-Api-Key={key}"
     )
   my_data <- safely(fromJSON)(url)
   if (is.null(my_data$result)) {
